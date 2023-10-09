@@ -13,10 +13,10 @@ class RegisterViewModel : ViewModel() {
 
     fun validateRegistrationDetails(): RegistrationResponse =
         registerCredential.value?.run {
-            if (name.isEmpty()) InvalidName
-            if (!email.isValidEmail()) InvalidEmail
-            if (!password.isValidPassword()) InvalidPassword
-            if (password != confirmPassword) InvalidConfirmPassword
-            RegistrationSuccessful
+            return if (name.isEmpty()) InvalidName
+            else if (!email.isValidEmail()) InvalidEmail
+            else if (!password.isValidPassword()) InvalidPassword
+            else if (password != confirmPassword) InvalidConfirmPassword
+            else RegistrationSuccessful
         } ?: InvalidName
 }
