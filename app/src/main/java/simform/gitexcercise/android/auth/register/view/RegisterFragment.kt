@@ -1,5 +1,6 @@
 package simform.gitexcercise.android.auth.register.view
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,8 +10,10 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import simform.gitexcercise.android.R
+import simform.gitexcercise.android.auth.register.model.RegistrationResponse
 import simform.gitexcercise.android.auth.register.viewmodel.RegisterViewModel
 import simform.gitexcercise.android.databinding.FragmentRegisterBinding
+import simform.gitexcercise.android.profile.ProfileActivity
 
 class RegisterFragment : Fragment() {
 
@@ -32,11 +35,15 @@ class RegisterFragment : Fragment() {
         binding.viewModel = viewModel
 
         binding.btnRegister.setOnClickListener {
-            Toast.makeText(
-                context,
-                getString(viewModel.validateRegistrationDetails().messageId),
-                Toast.LENGTH_SHORT
-            ).show()
+            val registrationResponse = viewModel.validateRegistrationDetails()
+            if (registrationResponse is RegistrationResponse.RegistrationSuccessful) {
+                Toast.makeText(context, getString(registrationResponse.messageId), Toast.LENGTH_SHORT).show()
+                val intent = Intent(context, ProfileActivity::class.java)
+                startActivity(intent)
+                activity?.finish()
+            } else {
+                Toast.makeText(context, getString(registrationResponse.messageId), Toast.LENGTH_SHORT).show()
+            }
         }
 
         binding.btnLogin.setOnClickListener {

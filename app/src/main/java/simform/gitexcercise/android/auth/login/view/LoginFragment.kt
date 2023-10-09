@@ -1,5 +1,6 @@
 package simform.gitexcercise.android.auth.login.view
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import simform.gitexcercise.android.auth.forgotpassword.ForgotPasswordFragment
 import simform.gitexcercise.android.auth.login.viewmodel.LoginViewModel
 import simform.gitexcercise.android.auth.register.view.RegisterFragment
 import simform.gitexcercise.android.databinding.FragmentLoginBinding
+import simform.gitexcercise.android.profile.ProfileActivity
 
 class LoginFragment : Fragment() {
 
@@ -34,17 +36,14 @@ class LoginFragment : Fragment() {
         binding.viewModel = viewModel
 
         binding.btnLogin.setOnClickListener {
-            Toast.makeText(
-                context,
-                getString(
-                    if (viewModel.isValidLogin) {
-                        R.string.msg_login_success
-                    } else {
-                        R.string.msg_login_failed
-                    }
-                ),
-                Toast.LENGTH_SHORT
-            ).show()
+            if (viewModel.isValidLogin) {
+                Toast.makeText(context, getString(R.string.msg_login_success), Toast.LENGTH_SHORT).show()
+                val intent = Intent(context, ProfileActivity::class.java)
+                startActivity(intent)
+                activity?.finish()
+            } else {
+                Toast.makeText(context, getString(R.string.msg_login_failed), Toast.LENGTH_SHORT).show()
+            }
         }
 
         binding.btnRegister.setOnClickListener {
