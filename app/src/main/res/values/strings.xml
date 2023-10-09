@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">GitExcercise</string>
+    <string name="email">Enter email</string>
+    <string name="password">Enter password</string>
+    <string name="login">Login</string>
+    <string name="new_user_register_here">New user? Register Here</string>
+    <string name="forgot_password_click_here">Forgot Password? Click Here</string>
+    <string name="enter_confirm_password">Enter confirm password</string>
+    <string name="register">Register</string>
+    <string name="already_a_user_login_here">Already a user? Login Here</string>
+    <string name="enter_name">Enter name</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="msg_check_email_to_reset_password">Check your email please and reset password!</string>
+    <string name="error_invalid_email">Invalid Email</string>
+    <string name="msg_login_success">Login success</string>
+    <string name="msg_login_failed">Login failed</string>
+    <string name="msg_registration_successful">Registration Successful</string>
+    <string name="error_invalid_name">Invalid Name</string>
+    <string name="error_invalid_password">Invalid Password</string>
+    <string name="error_confirm_password_match">Confirm Password doesn\'t match</string>
 </resources>
